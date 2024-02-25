@@ -1,0 +1,49 @@
+type Book {
+    id: ID!
+    name: String!
+    pageCount: Int!
+    author: Author!
+    price: Float!
+}
+
+type Author {
+    id: ID!
+    firstName: String!
+    lastName: String!
+}
+
+type Message {
+    id: ID
+    chatId: String
+    utc: String
+    value: String
+}
+
+
+
+input BookInput {
+    id: ID!
+    name: String!
+    pageCount: Int!
+    authorId: ID!
+}
+
+
+
+type Query {
+    bookById(id: ID!): Book
+    allBooks: [Book]
+}
+
+type Mutation {
+    newBook(book: BookInput): Book
+
+
+    sendMessage(chatId: String!, content: String!): Message
+}
+
+
+type Subscription {
+    newChatMessage(chatId: ID!): Message
+    time: String
+}
